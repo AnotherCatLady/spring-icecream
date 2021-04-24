@@ -1,7 +1,6 @@
 package de.weiss.icecream.api;
 
 import de.weiss.icecream.database.IcecreamRepository;
-import de.weiss.icecream.database.entity.CreamIce;
 import de.weiss.icecream.database.entity.Icecream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
