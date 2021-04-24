@@ -5,6 +5,9 @@ import {MatChipInputEvent} from "@angular/material/chips";
 import {IcecreamService} from "../service/icecream.service";
 import {Icecream} from "../model/icecream";
 
+/**
+ * Form to enter new icecream.
+ */
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -22,8 +25,8 @@ export class FormComponent implements OnInit {
     wholesalePrice: [''],
     retailPrice: [''],
     intolerances: [''],
-    fruitContent: ['']
-    // creamContent: ['']
+    fruitContent: [''],
+    creamContent: ['']
   });
 
   constructor(private fb: FormBuilder, private icecreamService: IcecreamService) {

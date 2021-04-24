@@ -17,6 +17,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatIconModule} from "@angular/material/icon";
 import {MatChipsModule} from "@angular/material/chips";
 import {HttpClientModule} from "@angular/common/http";
+import {MatTableModule} from "@angular/material/table";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {HttpClientModule} from "@angular/common/http";
     FlexLayoutModule,
     MatIconModule,
     MatChipsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
