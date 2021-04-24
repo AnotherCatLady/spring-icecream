@@ -1,0 +1,115 @@
+<h2>Neue Eissorte hinzufügen</h2>
+<form [formGroup]="icecreamForm" (ngSubmit)="onSubmit()">
+
+  <div fxLayout="column" fxLayoutGap="10" fxFlex="50%">
+    <h5>Name</h5>
+    <mat-form-field  appearance="outline" class="example-full-width">
+      <mat-label>Was für ein Eis?</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <h5>Kategorie</h5>
+    <mat-form-field appearance="outline">
+      <mat-label>Bitte wählen</mat-label>
+      <mat-select required formControlName="category">
+        <mat-option value="CREAM">Sahne-Eis</mat-option>
+        <mat-option value="WATER">Wasser-Eis</mat-option>
+        <mat-option value="FRUIT">Frucht-Eis</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div *ngIf="category == 'FRUIT'">
+      <h5>Früchte</h5>
+      <mat-form-field appearance="outline" class="example-chip-list">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let fruit of fruits" [selectable]="true"
+                    [removable]="true" (removed)="remove(fruits, fruit)">
+            {{fruit}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input matInput
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="add(fruits, $event)">
+        </mat-chip-list>
+      </mat-form-field>
+
+      <h5>Fruchtgehalt</h5>
+      <mat-form-field appearance="outline" class="example-full-width">
+        <mat-label>in %</mat-label>
+        <input matInput formControlName="fruitContent">
+      </mat-form-field>
+    </div>
+
+    <div *ngIf="category == 'WATER'">
+      <h5>Geschmacksstoffe</h5>
+      <mat-form-field appearance="outline" class="example-chip-list">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let flavour of flavours" [selectable]="true"
+                    [removable]="true" (removed)="remove(flavours, flavour)">
+            {{flavour}}
+            <mat-icon matChipRemove>cancel</mat-icon>
+          </mat-chip>
+          <input matInput
+                 [matChipInputFor]="chipList"
+                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                 [matChipInputAddOnBlur]="true"
+                 (matChipInputTokenEnd)="add(flavours, $event)">
+        </mat-chip-list>
+      </mat-form-field>
+    </div>
+
+<!--    <div *ngIf="category == 'CREAM'">-->
+<!--      <h5>Sahnegehalt</h5>-->
+<!--      <mat-form-field appearance="outline" class="example-full-width">-->
+<!--        <mat-label>in %</mat-label>-->
+<!--        <input matInput formControlName="creamContent">-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+
+    <h5>Zutaten</h5>
+    <mat-form-field appearance="outline" class="example-chip-list">
+      <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip *ngFor="let ingredient of ingredients" [selectable]="true"
+                  [removable]="true" (removed)="remove(ingredients, ingredient)">
+          {{ingredient}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+        <input matInput
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="add(ingredients, $event)">
+      </mat-chip-list>
+    </mat-form-field>
+
+    <h5>Lebensmittelunverträglichkeiten</h5>
+    <mat-form-field appearance="outline">
+      <mat-label>Unbedingt ausfüllen!</mat-label>
+      <textarea matInput type="text" formControlName="intolerances"></textarea>
+    </mat-form-field>
+
+    <h5>Nährwert</h5>
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>In kcal / 100g</mat-label>
+      <input matInput formControlName="calories">
+    </mat-form-field>
+
+    <h5>EK Preis</h5>
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>In Euro / 1 Liter</mat-label>
+      <input matInput formControlName="wholesalePrice">
+    </mat-form-field>
+
+    <h5>VK Preis</h5>
+    <mat-form-field appearance="outline" class="example-full-width">
+      <mat-label>In Euro / 1 Liter</mat-label>
+      <input matInput formControlName="retailPrice">
+    </mat-form-field>
+
+    <div fxFlex="25%">
+    <button mat-raised-button color="primary" type="submit">Hinzufügen</button>
+    </div>
+  </div>
+</form>
