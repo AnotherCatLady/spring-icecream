@@ -8,3 +8,5 @@ bauen.
 Jar-Datei aus dem Target-Vergeichnis starten.
 Zum Beispiel:
 ``java -jar icecream-0.0.1-SNAPSHOT.jar``
+Voraussetzung ist, dass Port 8080 frei ist. 
+Aufrufbar ist die Anwendung anschließend unter http://localhost:8080/
