@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit, SimpleChanges} from '@angular/core';
 import {IcecreamService} from "../service/icecream.service";
 import {Icecream} from "../model/icecream";
 
@@ -10,19 +10,12 @@ import {Icecream} from "../model/icecream";
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
 
-  icecreams: Icecream[] = [];
+  @Input() icecreams: Icecream[] = [];
   columns: string[] = ['name', 'category'];
 
-  constructor(private icecreamService: IcecreamService) {
-  }
-
-  ngOnInit(): void {
-    this.icecreamService.getIcecreams().subscribe(data => {
-      console.log(data);
-      this.icecreams = data;
-    })
+  constructor(private icecreamService: IcecreamService, private changeDetector: ChangeDetectorRef) {
   }
 
   /**

@@ -1,4 +1,5 @@
-<app-form></app-form>
+<app-form [icecreams]="icecreams" (addIcecreamEvent)="addIcecream($event)"></app-form>
 
 <mat-divider></mat-divider>
-<app-list></app-list>
+
+<app-list [icecreams]="icecreams"></app-list>

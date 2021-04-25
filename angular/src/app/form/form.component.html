@@ -3,7 +3,7 @@
 
   <div fxLayout="column" fxLayoutGap="10" fxFlex="50%">
     <h5>Name</h5>
-    <mat-form-field  appearance="outline" class="example-full-width">
+    <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>Was für ein Eis?</mat-label>
       <input matInput formControlName="name">
     </mat-form-field>
@@ -109,7 +109,10 @@
     </mat-form-field>
 
     <div fxFlex="25%">
-    <button mat-raised-button color="primary" type="submit">Hinzufügen</button>
+      <button mat-raised-button color="primary" type="submit">Hinzufügen</button>
+    </div>
+    <div fxFlex="25%" *ngIf="errorMessage.length > 0">
+      <mat-error>{{errorMessage}}</mat-error>
     </div>
   </div>
 </form>

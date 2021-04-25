@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";
@@ -14,6 +14,7 @@ import {Icecream} from "../model/icecream";
   styleUrls: ['./form.component.scss']
 })
 export class FormComponent implements OnInit {
+  @Input() icecreams: Icecream[] = [];
   ingredients: string[] = [];
   fruits: string[] = [];
   flavours: string[] = [];
@@ -28,6 +29,8 @@ export class FormComponent implements OnInit {
     fruitContent: [''],
     creamContent: ['']
   });
+  errorMessage: string = '';
+  @Output() addIcecreamEvent = new EventEmitter<Icecream>();
 
   constructor(private fb: FormBuilder, private icecreamService: IcecreamService) {
   }
@@ -41,16 +44,24 @@ export class FormComponent implements OnInit {
 
   onSubmit(): void {
     let icecream = new Icecream(this.icecreamForm.value);
-    if (icecream.category == 'FRUIT') {
-      icecream.fruits = this.fruits
+    if (this.isNameExisting(icecream.name)) {
+      this.errorMessage = 'Der Name der Eissorte existiert bereits!';
+    } else {
+      if (icecream.category == 'FRUIT') {
+        icecream.fruits = this.fruits
+      }
+      if (icecream.category == 'WATER') {
+        icecream.flavours = this.flavours;
+      }
+      this.icecreamService.saveIcecream(icecream).subscribe(data => {
+        this.addIcecreamEvent.emit(icecream);
+      });
+      this.errorMessage = '';
     }
-    if (icecream.category == 'WATER') {
-      icecream.flavours = this.flavours;
-    }
-    console.log(icecream);
-    this.icecreamService.saveIcecream(icecream).subscribe(data => {
-      console.log(data);
-    });
+  }
+
+  isNameExisting(name?: string): boolean {
+    return this.icecreams.findIndex((icecream) => icecream.name === name) >= 0;
   }
 
   /**
