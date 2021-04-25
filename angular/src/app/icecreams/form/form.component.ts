@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {COMMA, ENTER} from "@angular/cdk/keycodes";
 import {MatChipInputEvent} from "@angular/material/chips";
-import {IcecreamService} from "../service/icecream.service";
-import {Icecream} from "../model/icecream";
+import {IcecreamService} from "../../service/icecream.service";
+import {Icecream} from "../../model/icecream";
 
 /**
  * Form to enter new icecream.
@@ -54,7 +54,8 @@ export class FormComponent implements OnInit {
         icecream.flavours = this.flavours;
       }
       this.icecreamService.saveIcecream(icecream).subscribe(data => {
-        this.addIcecreamEvent.emit(icecream);
+        this.addIcecreamEvent.emit(data);
+        console.log(data);
       });
       this.errorMessage = '';
     }

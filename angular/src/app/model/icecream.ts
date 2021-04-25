@@ -1,4 +1,5 @@
 export class Icecream {
+  id: string | undefined;
   name: string | undefined;
   category: string | undefined;
   ingredients: string[] | undefined;

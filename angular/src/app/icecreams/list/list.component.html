@@ -5,8 +5,13 @@
     <mat-divider></mat-divider>
     <div *ngFor="let ice of icecreams">
       <div fxLayout="row" class="icecream-row">
-        <div fxFlex="40">{{ice.name}}</div>
-        <div fxFlex="40">{{displayCategory(ice)}}</div>
+        <div fxFlex="40" class="icecream-data">{{ice.name}}</div>
+        <div fxFlex="40" class="icecream-data">{{displayCategory(ice)}}</div>
+        <div fxFlex="20"><a [routerLink]="['/icecream-details', ice.id]">
+          <button mat-button color="accent">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </a></div>
       </div>
       <mat-divider></mat-divider>
     </div>

@@ -32,4 +32,32 @@ export class IcecreamService {
   saveIcecream(icecream: Icecream): Observable<any> {
     return this.http.put(this.baseUrl, icecream, this.httpOptions).pipe();
   }
+
+  /**
+   * Get icecream by id.
+   * @param id if of icecream to get.
+   */
+  getIcecream(id: string): Observable<Icecream> {
+    return this.http.get<Icecream>(this.baseUrl + "/" + id).pipe();
+  }
+
+  /**
+   * Get category name as text.
+   * @param category category of icecream.
+   */
+  getCategoryName(category: string | undefined) {
+    switch (category) {
+      case 'CREAM': {
+        return 'Sahne-Eis'
+      }
+      case 'FRUIT': {
+        return 'Frucht-Eis'
+      }
+      case 'WATER': {
+        return 'Wasser-Eis'
+      }
+      default:
+        return ''
+    }
+  }
 }

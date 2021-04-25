@@ -1,0 +1,67 @@
+<div fxLayout="column">
+
+  <div fxLayout="row">
+    <a routerLink="/icecreams" fxFlex="10">
+      <button mat-button color="accent">
+        <mat-icon>keyboard_arrow_left</mat-icon>
+        Zurück
+      </button>
+    </a>
+  </div>
+
+  <div *ngIf="icecream">
+    <div fxLayout="column">
+      <div fxLayout="row">
+        <h1>{{icecream.name}}</h1>
+        <h2>{{displayCategory(icecream)}}</h2>
+      </div>
+
+      <h3>Zutaten</h3>
+      <mat-chip-list aria-label="Zutaten">
+        <mat-chip color="primary"
+                  *ngFor="let ingredient of icecream.ingredients">{{ingredient}}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <h3>Lebensmittelunverträglichkeiten</h3>
+    <div>{{icecream.intolerances}}</div>
+
+    <h3>Nährwert</h3>
+    <div>{{icecream.calories}} kcal / 100g</div>
+
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="20">
+        <h3>EK Preis</h3>
+        <div>{{icecream.wholesalePrice}} EUR / Liter</div>
+      </div>
+
+      <div fxLayout="column" >
+        <h3>VK Preis</h3>
+        <div>{{icecream.retailPrice}} EUR / Liter</div>
+      </div>
+    </div>
+
+    <div *ngIf="icecream.category == 'CREAM'">
+      <h3>Sahnegehalt</h3>
+      <div>{{icecream.creamContent}} %</div>
+    </div>
+
+    <div *ngIf="icecream.category == 'FRUIT'">
+      <h3>Fruchtgehalt</h3>
+      <div>{{icecream.fruitContent}} %</div>
+
+      <h3>Früchte</h3>
+      <mat-chip-list aria-label="Früchte">
+        <mat-chip color="primary" *ngFor="let fruit of icecream.fruits">{{fruit}}</mat-chip>
+      </mat-chip-list>
+    </div>
+
+    <div *ngIf="icecream.category == 'WATER'">
+      <h3>Geschmacksstoffe</h3>
+      <mat-chip-list aria-label="Geschmacksstoffe">
+        <mat-chip color="primary" *ngFor="let flavour of icecream.flavours">{{flavour}}</mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+
+</div>

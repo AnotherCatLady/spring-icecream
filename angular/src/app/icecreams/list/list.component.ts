@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, Input, OnInit, SimpleChanges} from '@angular/core';
-import {IcecreamService} from "../service/icecream.service";
-import {Icecream} from "../model/icecream";
+import {IcecreamService} from "../../service/icecream.service";
+import {Icecream} from "../../model/icecream";
 
 /**
  * Component to display list of all icecreams.
@@ -23,18 +23,6 @@ export class ListComponent {
    * @param icecream icecream to display category text of.
    */
   displayCategory(icecream: Icecream) {
-    switch (icecream.category) {
-      case 'CREAM': {
-        return 'Sahne-Eis'
-      }
-      case 'FRUIT': {
-        return 'Frucht-Eis'
-      }
-      case 'WATER': {
-        return 'Wasser-Eis'
-      }
-      default:
-        return ''
-    }
+    return this.icecreamService.getCategoryName(icecream.category);
   }
 }
