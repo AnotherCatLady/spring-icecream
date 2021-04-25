@@ -1,5 +1,4 @@
-<app-form [icecreams]="icecreams" (addIcecreamEvent)="addIcecream($event)"></app-form>
-
-<mat-divider></mat-divider>
-
-<app-list [icecreams]="icecreams"></app-list>
+<div fxLayout="column">
+  <app-form [icecreams]="icecreams" (addIcecreamEvent)="addIcecream($event)"></app-form>
+  <app-list [icecreams]="icecreams" fxFlexOffset="2"></app-list>
+</div>
