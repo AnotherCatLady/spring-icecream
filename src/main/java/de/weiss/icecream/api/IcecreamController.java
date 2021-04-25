@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @Service
-@RequestMapping(path = "/icecream")
+@RequestMapping(path = "/icecream-api")
 public class IcecreamController {
 
   @Autowired

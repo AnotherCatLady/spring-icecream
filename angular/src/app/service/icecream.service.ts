@@ -9,7 +9,7 @@ import {Icecream} from "../model/icecream";
 @Injectable({providedIn: 'root'})
 export class IcecreamService {
 
-  private baseUrl = 'http://localhost:8080/icecream'
+  private baseUrl = 'http://localhost:8080/icecream-api'
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
