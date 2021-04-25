@@ -3,10 +3,10 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-<!--  <packaging>pom</packaging>-->
-<!--  <modules>-->
-<!--    <module>angular</module>-->
-<!--  </modules>-->
+  <!--  <packaging>pom</packaging>-->
+  <!--  <modules>-->
+  <!--    <module>angular</module>-->
+  <!--  </modules>-->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -22,10 +22,6 @@
     <java.version>16</java.version>
   </properties>
   <dependencies>
-<!--    <dependency>-->
-<!--      <groupId>org.springframework.boot</groupId>-->
-<!--      <artifactId>spring-boot-starter-jdbc</artifactId>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -35,11 +31,6 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
 
-<!--    <dependency>-->
-<!--      <groupId>org.postgresql</groupId>-->
-<!--      <artifactId>postgresql</artifactId>-->
-<!--      <scope>runtime</scope>-->
-<!--    </dependency>-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -58,6 +49,63 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!-- Build Angular application -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>angular-install</id>
+            <phase>validate</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>npm</executable>
+              <workingDirectory>${project.basedir}/angular</workingDirectory>
+              <arguments>
+                <argument>install</argument>
+              </arguments>
+            </configuration>
+          </execution>
+          <execution>
+            <id>angular-build</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>npm</executable>
+              <workingDirectory>${project.basedir}/angular</workingDirectory>
+              <arguments>
+                <argument>run</argument>
+                <argument>buildProduction</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Copy Angular resources into spring boot application -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>copy-resources</id>
+            <phase>process-classes</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${build.directory}/classes/static/</outputDirectory>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}\angular\dist\icecream-app</directory>
+                </resource>
+              </resources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
