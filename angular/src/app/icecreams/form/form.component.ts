@@ -44,6 +44,7 @@ export class FormComponent implements OnInit {
 
   onSubmit(): void {
     let icecream = new Icecream(this.icecreamForm.value);
+    icecream.ingredients = this.ingredients;
     if (this.isNameExisting(icecream.name)) {
       this.errorMessage = 'Der Name der Eissorte existiert bereits!';
     } else {
