@@ -1,6 +1,6 @@
 # Super Eisecreme-App
 ## Bauen
-Benötigt wird Maven (3.5+) und Java (16+).
+Benötigt wird Maven (3.5+) und Java (11+).
 Projekt mit 
 `maven clean install`
 bauen. 
