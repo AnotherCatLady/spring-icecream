@@ -56,7 +56,6 @@ export class FormComponent implements OnInit {
       }
       this.icecreamService.saveIcecream(icecream).subscribe(data => {
         this.addIcecreamEvent.emit(data);
-        console.log(data);
       });
       this.errorMessage = '';
     }

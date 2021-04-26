@@ -26,7 +26,6 @@ export class DetailComponent implements OnInit {
         }
       );
     }
-    console.log(this.route.snapshot.paramMap.get("id"));
   }
 
   /**

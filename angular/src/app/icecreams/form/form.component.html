@@ -1,33 +1,33 @@
 <h2>Neue Eissorte hinzufügen</h2>
-<form [formGroup]="icecreamForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="icecreamForm" (ngSubmit)="onSubmit()" id="icecreamForm">
 
   <div fxLayout="column" fxLayoutGap="10" fxFlex="50%">
     <h5>Name</h5>
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>Was für ein Eis?</mat-label>
-      <input matInput formControlName="name">
+      <input matInput formControlName="name" id="inputName">
     </mat-form-field>
 
     <h5>Kategorie</h5>
     <mat-form-field appearance="outline">
       <mat-label>Bitte wählen</mat-label>
-      <mat-select required formControlName="category">
-        <mat-option value="CREAM">Sahne-Eis</mat-option>
-        <mat-option value="WATER">Wasser-Eis</mat-option>
-        <mat-option value="FRUIT">Frucht-Eis</mat-option>
+      <mat-select required formControlName="category" id="dropdownCategory">
+        <mat-option value="CREAM" id="optionCream">Sahne-Eis</mat-option>
+        <mat-option value="WATER" id="optionWater">Wasser-Eis</mat-option>
+        <mat-option value="FRUIT" id="optionFruit">Frucht-Eis</mat-option>
       </mat-select>
     </mat-form-field>
 
     <div *ngIf="category == 'FRUIT'">
       <h5>Früchte</h5>
       <mat-form-field appearance="outline" class="example-chip-list">
-        <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip-list #chipList>
           <mat-chip *ngFor="let fruit of fruits" [selectable]="true"
                     [removable]="true" (removed)="remove(fruits, fruit)">
             {{fruit}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
-          <input matInput
+          <input matInput id="inputFruits"
                  [matChipInputFor]="chipList"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  [matChipInputAddOnBlur]="true"
@@ -38,20 +38,20 @@
       <h5>Fruchtgehalt</h5>
       <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>in %</mat-label>
-        <input matInput formControlName="fruitContent">
+        <input matInput formControlName="fruitContent" id="inputFruitContent">
       </mat-form-field>
     </div>
 
     <div *ngIf="category == 'WATER'">
       <h5>Geschmacksstoffe</h5>
       <mat-form-field appearance="outline" class="example-chip-list">
-        <mat-chip-list #chipList aria-label="Fruit selection">
+        <mat-chip-list #chipList>
           <mat-chip *ngFor="let flavour of flavours" [selectable]="true"
                     [removable]="true" (removed)="remove(flavours, flavour)">
             {{flavour}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
-          <input matInput
+          <input matInput id="inputFlavours"
                  [matChipInputFor]="chipList"
                  [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                  [matChipInputAddOnBlur]="true"
@@ -64,19 +64,19 @@
       <h5>Sahnegehalt</h5>
       <mat-form-field appearance="outline" class="example-full-width">
         <mat-label>in %</mat-label>
-        <input matInput formControlName="creamContent">
+        <input matInput formControlName="creamContent" id="inputCreamContent">
       </mat-form-field>
     </div>
 
     <h5>Zutaten</h5>
     <mat-form-field appearance="outline" class="example-chip-list">
-      <mat-chip-list #chipList aria-label="Fruit selection">
+      <mat-chip-list #chipList>
         <mat-chip *ngFor="let ingredient of ingredients" [selectable]="true"
                   [removable]="true" (removed)="remove(ingredients, ingredient)">
           {{ingredient}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
-        <input matInput
+        <input matInput id="inputIngredients"
                [matChipInputFor]="chipList"
                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                [matChipInputAddOnBlur]="true"
@@ -87,32 +87,32 @@
     <h5>Lebensmittelunverträglichkeiten</h5>
     <mat-form-field appearance="outline">
       <mat-label>Unbedingt ausfüllen!</mat-label>
-      <textarea matInput type="text" formControlName="intolerances"></textarea>
+      <textarea matInput type="text" formControlName="intolerances" id="inputIntolerances"></textarea>
     </mat-form-field>
 
     <h5>Nährwert</h5>
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>In kcal / 100g</mat-label>
-      <input matInput formControlName="calories">
+      <input matInput formControlName="calories" id="inputCalories">
     </mat-form-field>
 
     <h5>EK Preis</h5>
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>In Euro / 1 Liter</mat-label>
-      <input matInput formControlName="wholesalePrice">
+      <input matInput formControlName="wholesalePrice" id="wholesalePrice">
     </mat-form-field>
 
     <h5>VK Preis</h5>
     <mat-form-field appearance="outline" class="example-full-width">
       <mat-label>In Euro / 1 Liter</mat-label>
-      <input matInput formControlName="retailPrice">
+      <input matInput formControlName="retailPrice" id="retailPrice">
     </mat-form-field>
 
     <div fxFlex="25%">
-      <button mat-raised-button color="primary" type="submit">Hinzufügen</button>
+      <button mat-raised-button color="primary" type="submit" id="buttonAddIcecream">Hinzufügen</button>
     </div>
     <div fxFlex="25%" *ngIf="errorMessage.length > 0">
-      <mat-error>{{errorMessage}}</mat-error>
+      <mat-error id="errorMessage">{{errorMessage}}</mat-error>
     </div>
   </div>
 </form>
